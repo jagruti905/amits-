@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Amit!</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', serif;
+        }
+
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #3b2317;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .page {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .active {
+            display: flex;
+        }
+
+        /* GENERAL BROWN BUTTONS */
+        .btn {
+            background: #5c3a21;
+            color: #f4ecd8;
+            border: 2px solid #f4ecd8;
+            padding: 12px 35px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            margin: 10px;
+            z-index: 10;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            background: #764c2d;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 20px;
+            margin-top: 25px;
+            z-index: 10;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            padding: 8px 18px;
+            font-size: 0.95rem;
+            background: #5c3a21;
+            color: #f4ecd8;
+            border: 2px solid #f4ecd8;
+            z-index: 20;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+
+        /* PAGE 1: Memory Page */
+        #page1 {
+            background-image: url('3 page.jpeg');
+            background-size: contain;
+            background-position: center;
+            background-color: #3b2317;
+        }
+
+        .next-btn-p1 {
+            position: absolute;
+            bottom: 6vh;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* PAGE 2: Accept Your Gifts? */
+        #page2 {
+            background-image: url('gift .jpeg');
+        }
+
+        .question-text {
+            font-size: 2.5rem;
+            color: #5c3a21;
+            margin-bottom: 20px;
+            font-weight: normal;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 10px 30px;
+            border-radius: 15px;
+        }
+
+        /* PAGE 3: Please Try Again (Brown Background & Centered Crying Cat) */
+        #page3 {
+            background-color: #3b2317;
+        }
+
+        .sad-cat-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(253, 251, 247, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            border: 3px solid #f4ecd8;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            z-index: 10;
+            max-width: 420px;
+        }
+
+        .sad-cat-box img {
+            width: 240px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 2px solid #5c3a21;
+            margin-bottom: 20px;
+        }
+
+        .bold-try-again {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #5c3a21;
+            margin-bottom: 15px;
+        }
+
+        /* PAGE 4: Choose Your Gift */
+        #page4 {
+            background-image: url('gift.jpeg');
+            background-size: contain;
+            background-position: center;
+            background-color: #3b2317;
+        }
+
+        .gift-grid {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 40vh;
+            flex-wrap: wrap;
+            z-index: 10;
+        }
+
+        .gift-card {
+            background: rgba(253, 251, 247, 0.9);
+            border: 3px solid #5c3a21;
+            border-radius: 16px;
+            padding: 15px 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(92,58,33,0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .gift-card:hover {
+            transform: translateY(-8px);
+            background: #ffffff;
+            box-shadow: 0 12px 25px rgba(92,58,33,0.4);
+        }
+
+        .gift-icon {
+            font-size: 45px;
+            margin-bottom: 8px;
+        }
+
+        /* PAGE 5: Gift 1 - Letter */
+        #page5 {
+            background-image: url('gift.jpeg');
+            background-size: cover;
+        }
+
+        .letter-container {
+            position: relative;
+            width: 75vw;
+            max-width: 650px;
+            height: 70vh;
+            max-height: 500px;
+            background-image: url('letter.jpeg');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            padding: 50px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            z-index: 2;
+        }
+
+        .letter-content {
+            color: #4a3525;
+            font-family: 'Georgia', serif;
+            text-align: left;
+            width: 100%;
+            overflow-y: auto;
+            max-height: 350px;
+        }
+
+        .letter-content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #3b2317;
+        }
+
+        .letter-content p {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        /* PAGE 6: Gift 2 - Some Flowers For You (Brown BG & Centered Cat) */
+        #page6 {
+            background-color: #3b2317;
+        }
+
+        .flowers-center-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(253, 251, 247, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            border: 3px solid #f4ecd8;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            z-index: 10;
+            max-width: 420px;
+        }
+
+        .flowers-center-box img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 2px solid #5c3a21;
+            margin-bottom: 15px;
+        }
+
+        .flowers-center-box h2 {
+            color: #5c3a21;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        /* PAGE 7: Gift 3 - Memories (Polaroid Collage) */
+        #page7 {
+            
+            background-image: url('memories.jpg');
+            background-size: contain;
+            background-position: center;
+            background-color: #3b231}
+        
+  
+    </style>
+</head>
+<body>
+
+    <!-- Page 1: Celebration Memory Page -->
+    <div id="page1" class="page active">
+        <button class="btn next-btn-p1" onclick="showPage('page2')">Next ➔</button>
+    </div>
+
+    <!-- Page 2: Accept Your Gifts? -->
+    <div id="page2" class="page">
+        <h2 class="question-text">Accept your gifts?</h2>
+        <div class="btn-container">
+            <button class="btn" onclick="showPage('page4')">YES</button>
+            <button class="btn" onclick="showPage('page3')">NO</button>
+        </div>
+    </div>
+
+    <!-- Page 3: Please Try Again (Centered Sad Cat & Bold Text) -->
+    <div id="page3" class="page">
+        <div class="sad-cat-box">
+            <img src="sad_cat.jpg" alt="Please try again">
+            <h2 class="bold-try-again">Please try again</h2>
+            <button class="btn" onclick="showPage('page2')">OKAY</button>
+        </div>
+    </div>
+
+    <!-- Page 4: Choose Your Gift -->
+    <div id="page4" class="page">
+        <h2 class="question-text" style="font-size: 2.2rem; position: absolute; top: 12vh;">Yay! Choose your gift 🎁</h2>
+        <div class="gift-grid">
+            <div class="gift-card" onclick="showPage('page5')">
+                <div class="gift-icon">✉️</div>
+                <button class="btn" style="padding: 6px 15px; font-size: 0.9rem; margin: 0;">Gift 1</button>
+            </div>
+            <div class="gift-card" onclick="showPage('page6')">
+                <div class="gift-icon">💐</div>
+                <button class="btn" style="padding: 6px 15px; font-size: 0.9rem; margin: 0;">Gift 2</button>
+            </div>
+            <div class="gift-card" onclick="showPage('page7')">
+                <div class="gift-icon">🎁</div>
+                <button class="btn" style="padding: 6px 15px; font-size: 0.9rem; margin: 0;">Gift 3</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 5: Gift 1 - Letter -->
+    <div id="page5" class="page">
+        <button class="btn back-btn" onclick="showPage('page4')">⬅ Back to Gifts</button>
+        <div class="letter-container">
+            <div class="letter-content">
+                <h2>TO SPECIAL ONE❤️🧿,</h2>
+                <p>Happy Birthday to the most precious person in my life❤️🧿. Honestly, I don't even know where to begin because no amount of words will ever be enough to explain how much you mean to me. You are not just a special person, you are my comfort place, my safe person, and one of the biggest reasons behind so many of my smiles. Life became softer, brighter, and so much more meaningful after you entered it🥰. Through every laugh, every random conversation, every late-night talk, every silly fight, every emotional breakdown, and every memory  we created together, you stayed beside me like a constant light🧿😘. I really don't know what I would do without you sometimes🫠. This year  you have achieved many things like your first international trip to Switzerland  and your dream phone which you want to take from last 2,3 birthday's ✨.May your goals turn into achievements this year.🧿😘. Happy birthday My boy, My love,My Babu, MY babyy 🧿😘❤️✨🤭😍.I love you soo much 😘❤️🤭</p>
+            
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 6: Gift 2 - Some Flowers For You (Centered Image & Message) -->
+    <div id="page6" class="page">
+        <button class="btn back-btn" onclick="showPage('page4')">⬅ Back to Gifts</button>
+        <div class="flowers-center-box">
+            <img src="flower.jpeg" alt="Some flowers for you ">
+            <h2>Some flowers for my flower🤭</h2>
+        </div>
+    </div>
+
+    <!-- Page 7: Gift 3 - Memories (Polaroid Collage) -->
+    <div id="page7" class="page">
+        <button class="btn back-btn" onclick="showPage('page4')">⬅ Back to Gifts</button>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+        }
+  
+    </script>
+</body>
+</html>
